@@ -5,7 +5,8 @@ int partition (int a[], int l, int h)
 {
     int pivot = a[h];
     
-    int i = l-1; /***** i always points to the last element on the left hand side that is smaller than the pivot****/
+    int i = l-1; /***** i always points to the last element on the left hand side that is smaller than the pivot 
+                        KEEP IN MIND i POINTS to index just before the lower bound****/
     int temp;
     
     for (int j=l; j<=h-1; j++)
