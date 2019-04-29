@@ -24,7 +24,7 @@ void merge (int arr[], int l, int m, int h)
 
     int i,j = 0;
        
-    int k = l;
+    int k = l; /**********KEEP IN MIND k points to the lower bound which shows starting of current sub array********/
     printf("k=%d\n",k);
     
     while (i < n1 && j<n2)
