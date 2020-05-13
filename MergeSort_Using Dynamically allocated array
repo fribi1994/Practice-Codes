@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+void merge(int *a,int LB, int MID, int UB)
+{
+    int  n= (MID - LB +1);
+    int  m= (UB - MID);
+    
+    int L[n];
+    int R[m];
+    
+    for(int i=0; i<n; i++)
+    {
+        L[i]  = a[LB+i];
+    }
+    
+    for(int j=0; j<m; j++)
+    {
+        R[j]  = a[MID+1+j];
+    }
+    
+    int k = LB;
+    int i=0;
+    int j=0;
+    
+    while(i<n && j<m)
+    {
+        if (L[i]<=R[j])
+        a[k++] = L[i++];
+        else a[k++]=R[j++];
+        
+    }
+    
+    while (i<n)
+    {
+        a[k++] = L[i++];
+    }
+    
+    while(j<m)
+    {
+        a[k++] = R[j++];
+    }
+    
+}
+
+void mergesort(int *a, int LB, int UB )
+{
+   int n = UB-LB+1;
+   if(LB<UB)
+    {
+        
+       int MID = (LB+UB)/2;
+        mergesort(a,LB,MID);
+        mergesort(a,MID+1,UB);
+        merge(a,LB,MID,UB);
+        
+        for(int j= 0; j<n; j++)
+	{
+	    printf("%d\t", a[LB+j]);
+	    
+	}
+	printf("\n");
+	
+    }
+}
+
+int main(void) {
+
+	int n=0;
+	scanf("%d", &n);
+
+	int LB = 0;
+	int UB=n-1;
+	
+	int *a = (int *) calloc(n,sizeof(int));
+	
+	for(int i=0; i<n; i++)
+    {	
+       scanf("%d",a+i);
+    }
+	
+	mergesort(a,LB,UB);
+	printf("final array");
+	
+	for(int j= 0; j<n; j++)
+	{
+	    
+	    printf(" %d\t", a[j]);
+	}
+	
+	return 0;
+}
+
+
+
+
+
