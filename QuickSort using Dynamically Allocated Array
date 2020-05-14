@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int partition(int *a, int LB, int UB){
+    
+    int pivot = a[UB];
+     int i = LB-1;
+    
+    for(int j=LB; j<UB; j++){
+        if(a[j]<=pivot){
+            
+            i++;
+            int temp = a[j];
+            a[j]=a[i];
+            a[i]=temp;
+        }
+        
+        
+    }
+    
+    int temp = a[++i];
+    a[i] = pivot;
+    a[UB] = temp;
+    
+    return i;
+}
+
+void quickSort(int *a, int LB, int UB){
+    
+    if(LB<UB){
+        
+        int mid = partition(a,LB,UB);
+        quickSort(a,LB,mid-1);
+        quickSort(a,mid+1,UB);
+    }
+}
+
+int main (){
+    
+    int n;
+    scanf("%d",&n);
+    
+    int *a = (int *) malloc (n*sizeof(int));
+    
+    int LB = 0;
+    int UB = n-1;
+    
+    for(int i=0; i<n; i++){
+        scanf("%d",(a+i));
+    }
+    
+    quickSort(a,LB,UB);
+    
+    for(int i=0; i<n; i++){
+        printf("%d\t",*(a+i));
+    }
+    
+    
+    return 0;
+}
