@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+	float n;
+	scanf("%f",&n);
+	
+	int b;
+	scanf("%d",&b);
+
+    int dec= (int)n;
+    float frac = fabs(n);	  /*fabs() function takes a single argument (in double ) 
+							              and returns the absolute value of that number (also in double ).*/
+    
+	frac= frac - abs(dec);   /*abs( ) function in C returns the absolute value of an integer.
+								            Only integer values are supported in C*/
+    
+   int q=0;
+   int r=0;
+    	
+	if (b==1){
+	    printf("0");
+	 return 0;
+	}
+	
+	else{
+	   
+	    while (dec != 0){
+	        r = r*10 + dec%b;
+	        dec = dec/b;
+	    }
+	    
+    	while(r!=0){
+    	    int s = r%10;
+    	    q = q*10 + s;
+    	    r = r/10;
+	    }
+	    
+	    if(frac == 0)
+	       printf("%d\n",q);
+	    
+		else{
+	        
+	        int i;
+	        int x = 0;
+	        
+	        for(i=0; i<8; i++){
+	           
+	           frac = frac *b;
+	           x = x*10+(int)frac;
+	           int q = (int)frac;
+	           frac = frac - q;
+	        }
+	        printf("%d.%d",q,x);
+	    }
+	    
+	}
+	return 0;
+}
+
